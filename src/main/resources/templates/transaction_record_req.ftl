@@ -1,3 +1,5 @@
+<#setting number_format="computer">
+
 {
    "transaction_file":
    [
