@@ -6,6 +6,6 @@
           "email": "${headers.h_email}",   
           "ip": "${headers.h_ip}"  },  
           "file_paths": 
-                 [   "${headers.h_filepath}"
+                 [   "${headers.h_filepath}/${headers.h_filename}"
            ] 
 }
