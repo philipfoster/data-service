@@ -16,7 +16,12 @@
 
     <!-- maven plugin versions -->
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>  
+    <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+
+    <version.infinispan.starter>1.0.7.Final-redhat-00015</version.infinispan.starter>
+    <version.infinispan>9.4.19.Final-redhat-00001</version.infinispan>
+
+    <version.hibernate>5.4.17.Final</version.hibernate>
   </properties>
   
   <dependencyManagement>
@@ -36,6 +41,26 @@
         <version>${camel.springboot.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <!-- Infinispan BOMs -->
+      <dependency>
+        <groupId>org.infinispan</groupId>
+        <artifactId>infinispan-bom</artifactId>
+        <version>${version.infinispan}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.infinispan</groupId>
+        <artifactId>infinispan-spring-boot-starter</artifactId>
+        <version>${version.infinispan.starter}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.infinispan</groupId>
+        <artifactId>infinispan-persistence-parent</artifactId>
+        <version>${version.infinispan}</version>
+        <type>pom</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -59,6 +84,42 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-actuator</artifactId>
+    </dependency>
+
+    <!-- JPA -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${version.hibernate}</version>
+<!--      <version>5.4.17.Final</version>-->
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.data</groupId>-->
+<!--      <artifactId>spring-data-jpa</artifactId>-->
+<!--&lt;!&ndash;      <version>1.5.0.RELEASE</version>&ndash;&gt;-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.12</version>
+    </dependency>
+
+    <!-- Infinispan -->
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-spring-boot-starter-embedded</artifactId>
+      <version>${version.infinispan.starter}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-cachestore-jpa</artifactId>
+      <version>${version.infinispan}</version>
     </dependency>
 
     <!-- activemq -->
