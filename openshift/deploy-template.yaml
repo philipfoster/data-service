@@ -8,7 +8,9 @@ parameters:
   - name: DB_PASSWORD
   - name: DB_ADMIN_PASSWORD
 objects:
-# PG Secret
+########################################
+############    POSTGRES    ############
+########################################
   - apiVersion: v1
     kind: Secret
     metadata:
@@ -22,9 +24,7 @@ objects:
       POSTGRESQL_USER: ${DB_USERNAME}
       POSTGRESQL_PASSWORD: ${DB_PASSWORD}
       POSTGRESQL_ADMIN_PASSWORD: ${DB_ADMIN_PASSWORD}
-
 # PG Persistent Volume
-
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
@@ -38,7 +38,6 @@ objects:
       resources:
         requests:
           storage: 5Gi
-
 # PG Service
   - apiVersion: v1
     kind: Service
@@ -58,7 +57,6 @@ objects:
         deploymentconfig: ${APPLICATION_NAME}-pg-dc
     status:
       loadBalancer: {}
-
 # PG Deployment Config
 # TODO: Look into using StatefulSet instead of DeploymentConfig
   - apiVersion: v1
@@ -128,3 +126,76 @@ objects:
             - name: pg-data
               persistentVolumeClaim:
                 claimName: ${APPLICATION_NAME}-pg-pvc
+########################################
+############  DATA SERVICE  ############
+########################################
+
+# DS Service
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: ${APPLICATION_NAME}-ds-svc
+      namespace: ${PROJECT_NAMESPACE}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      ports:
+        - name: target-tcp-port
+          targetPort: 9000
+          port: 80
+          protocol: TCP
+      selector:
+        app: ${APPLICATION_NAME}
+        deploymentconfig: ${APPLICATION_NAME}-dataservice
+    status:
+      loadBalancer: {}
+
+# DS Route
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: ${APPLICATION_NAME}-ds-route
+      namespace: ${PROJECT_NAMESPACE}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      port:
+        targetPort: target-tcp-port
+      to:
+        kind: Service
+        name: ${APPLICATION_NAME}-ds-svc
+# DS Deployment Config
+  - apiVersion: v1
+    kind: DeploymentConfig
+    metadata:
+      name: ${APPLICATION_NAME}-dataservice
+      namespace: ${PROJECT_NAMESPACE}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      replicas: 1
+      selector:
+        app: ${APPLICATION_NAME}
+        deploymentconfig: ${APPLICATION_NAME}-dataservice
+      strategy:
+        type: Rolling
+        resources: {}
+        rollingParams:
+          updatePeriodSeconds: 5
+          intervalSeconds: 5
+          timeoutSeconds: 180
+      template:
+        metadata:
+          labels:
+            app: ${APPLICATION_NAME}
+            deploymentconfig: ${APPLICATION_NAME}-dataservice
+        spec:
+          triggers:
+            - type: ConfigChange
+          imagePullSecrets:
+            - name: philip-malware-dataservice-pulltoken-pull-secret
+          containers:
+            - image: quay-enterprise-quay-enterprise.ocp.nvsconsulting.io/philip/malware-data-service
+              name: data-service
+              ports:
+                - containerPort: 9000
