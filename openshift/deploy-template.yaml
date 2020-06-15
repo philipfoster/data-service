@@ -144,6 +144,15 @@ objects:
           targetPort: 9000
           port: 80
           protocol: TCP
+# https://access.redhat.com/documentation/en-us/red_hat_data_grid/6.4/html/administration_and_configuration_guide/sect-configure_jgroups_library_mode#table-jgroups-tcp.xml
+        - name: jgroups-tcp-port
+          targetPort: 7800
+          port: 7800
+          protocol: TCP
+        - name: jgroups-multicast-port
+          targetPort: 46655
+          port: 46655
+          protocol: UDP
       selector:
         app: ${APPLICATION_NAME}
         deploymentconfig: ${APPLICATION_NAME}-dataservice
@@ -158,6 +167,8 @@ objects:
       namespace: ${PROJECT_NAMESPACE}
       labels:
         app: ${APPLICATION_NAME}
+      annotations:
+        haproxy.router.openshift.io/balance: roundrobin
     spec:
       port:
         targetPort: target-tcp-port
@@ -173,7 +184,7 @@ objects:
       labels:
         app: ${APPLICATION_NAME}
     spec:
-      replicas: 1
+      replicas: 2
       selector:
         app: ${APPLICATION_NAME}
         deploymentconfig: ${APPLICATION_NAME}-dataservice
@@ -199,3 +210,19 @@ objects:
               name: data-service
               ports:
                 - containerPort: 9000
+#              env:
+#                - name: jdbcUrl
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: pg-user-credentials
+#                      key: POSTGRESQL_DATABASE
+#                - name: jdbcUser
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: pg-user-credentials
+#                      key: POSTGRESQL_USER
+#                - name: jdbcPassword
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: pg-user-credentials
+#                      key: POSTGRESQL_PASSWORD
