@@ -13,11 +13,11 @@
 
 
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://test-app-pg-svc:5432/mydb" /> <!-- JDBC URL -->
-            <property name="javax.persistence.jdbc.user" value="myuser" /> <!-- DB User -->
-            <property name="javax.persistence.jdbc.password" value="p4ssw0rd1!" /> <!-- DB Password -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/> <!-- DB Dialect -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" /> <!-- DB Driver -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db" /> <!-- JDBC URL -->
+            <property name="javax.persistence.jdbc.user" value="user" /> <!-- DB User -->
+            <property name="javax.persistence.jdbc.password" value="password" /> <!-- DB Password -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/> <!-- DB Dialect -->
 
             <!-- Don't use these in production -->
             <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
