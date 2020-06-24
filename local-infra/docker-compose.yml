@@ -1,3 +1,7 @@
+# This file allows you to quickly spin up a local database for testing purposes using Docker
+# To use, open a terminal, and CD to the directory containing this file. Then, run
+# `docker-compose up`
+
 version: '3.3'
 
 services:
