@@ -42,8 +42,7 @@ _NOTE: The following build command assumes you have configured your Maven user s
 2. Type this command to build and run the project assuming this is running on your local workstation:
 
         >mvn clean install
-        >java -jar target/data-service-0.0.1-SNAPSHOT.jar
-        
+        >java -jar target/data-service-0.0.1-SNAPSHOT.jar  --spring.config.location=<path-to-propertyfile>        
 
 Build and run the Project on DEV environment
 -----------------------------------------------
@@ -52,8 +51,7 @@ Build and run the Project on DEV environment
 2. Type this command to build and run the project assuming this is running on Malware's AWS DEV environment:
 
         >mvn clean install
-        >java -jar target/data-service-0.0.1-SNAPSHOT.jar
-        
+        >java -jar target/data-service-0.0.1-SNAPSHOT.jar  --spring.config.location=<path-to-propertyfile>        
 
 Investigate the Console Output
 ------------------------------------
