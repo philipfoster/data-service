@@ -115,3 +115,4 @@ lsp/
 
 # End of https://www.gitignore.io/api/java,eclipse,visualstudiocode
 
+local-infra/*
