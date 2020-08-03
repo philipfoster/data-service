@@ -86,11 +86,11 @@
       <artifactId>spring-boot-actuator</artifactId>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>mysql</groupId>-->
-<!--      <artifactId>mysql-connector-java</artifactId>-->
-<!--      <version>8.0.19</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.19</version>
+    </dependency>
 
     <!-- activemq -->
     <dependency>
@@ -121,11 +121,11 @@
       <version>${version.infinispan.starter}</version>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>org.infinispan</groupId>-->
-<!--      <artifactId>infinispan-cachestore-jpa</artifactId>-->
-<!--      <version>${version.infinispan}</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-cachestore-jpa</artifactId>
+      <version>${version.infinispan}</version>
+    </dependency>
 
     <!-- Camel -->
     <dependency>
@@ -160,10 +160,10 @@
 	  <groupId>org.apache.camel</groupId>
 	  <artifactId>camel-freemarker</artifactId>
 	</dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.apache.camel</groupId>-->
-<!--      <artifactId>camel-jdbc</artifactId>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jdbc</artifactId>
+    </dependency>
     <!-- test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -196,7 +196,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>4.3.1.Final</version>
     </dependency>
   </dependencies>
 
