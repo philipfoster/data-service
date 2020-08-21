@@ -116,3 +116,5 @@ lsp/
 # End of https://www.gitignore.io/api/java,eclipse,visualstudiocode
 
 local-infra/*
+
+_openshift/deploy_pf.sh

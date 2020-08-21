@@ -23,7 +23,15 @@
 
     <version.hibernate>5.4.17.Final</version.hibernate>
   </properties>
-  
+
+  <repositories>
+    <repository>
+      <id>redhat-ga</id>
+      <name>RedHat GA</name>
+      <url>https://maven.repository.redhat.com/ga/</url>
+    </repository>
+  </repositories>
+
   <dependencyManagement>
     <dependencies>
       <!-- Spring Boot BOM -->
