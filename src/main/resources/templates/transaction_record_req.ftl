@@ -1,6 +1,4 @@
 <#setting number_format="computer">
-<#setting number_format="computer">
-
 {
    "transaction_file":
    [
