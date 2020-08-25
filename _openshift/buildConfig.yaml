@@ -16,21 +16,32 @@ objects:
           name: artifactory
         to:
           kind: DockerImage
-          name: ${DOCKER_REPO_URL}/${NAMESPACE}/${SERVICE}:latest
+          name: ${DOCKER_REPO_URL}/${IMAGE_NAMESPACE}/${SERVICE}:latest
       postCommit: {}
       resources: {}
       runPolicy: Serial
       source:
-        type: Binary
+        type: Git
+        git:
+          uri: ${SCM_URL}
+          ref: ${SCM_REF}
+        contextDir: /
       strategy:
-        dockerStrategy:
-          dockerfilePath: ./Dockerfile
-        type: Docker
-      triggers: []
+        type: Source
+        sourceStrategy:
+          forcePull: true
+          from:
+            kind: ImageStreamTag
+            namespace: openshift
+            name: java:latest
+      triggers:
 parameters:
   - name: NAMESPACE
     displayName: Namespace (Openshift project)
     description: Openshift project this application resides in
+    required: true
+  - name: IMAGE_NAMESPACE
+    displayName: Docker repo namespace
     required: true
   - name: DOCKER_REPO_URL
     displayName: Docker Repo URL
@@ -40,3 +51,10 @@ parameters:
     displayName: Service Name
     description: Service Name
     required: true
+  - name: SCM_URL
+    displayName: Git URL
+    required: true
+  - name: SCM_REF
+    default: master
+    required: false
+    description: The Git ref to build in SCM_URL

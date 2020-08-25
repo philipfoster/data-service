@@ -15,6 +15,7 @@ objects:
         - port: 9000
           protocol: TCP
           targetPort: 9000
+          name: datasvc-port
       selector:
         name: ${SERVICE}
       sessionAffinity: None
