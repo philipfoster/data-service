@@ -117,4 +117,4 @@ lsp/
 
 local-infra/*
 
-_openshift/deploy_pf.sh
+/_openshift/deploy_pf.sh
