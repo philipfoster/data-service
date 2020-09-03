@@ -7,7 +7,9 @@ objects:
   - apiVersion: v1
     kind: ConfigMap
     metadata:
-      name: data-service-configmap
+      name: ${APP_NAME}-configmap
+      labels:
+        app: ${APP_NAME}
     data:
       application.properties: |-
         #################################################################################
@@ -60,3 +62,7 @@ objects:
         clustering.jgroups-channel-name=InfinispanPoc
         infinispan.embedded.enabled=true
         infinispan.embedded.cluster-name=TestCluster
+parameters:
+  - name: APP_NAME
+    required: true
+    description: The app name
