@@ -7,7 +7,7 @@ project_params:
   IMAGE_NAMESPACE: "{{ image_namespace_name }}"
   DOCKER_REPO_URL: "{{ docker_repo_url }}"
   SERVICE: "{{ service }}"
-  SCM_URL: "https://github.com/philipfoster/data-service.git"
+  SCM_URL: "https://github.dso.ncps.us-cert.gov/malware-nextgen-pam/DataService.git"
   SCM_REF: "ocp"
   APP_NAME: "data-service"
 
