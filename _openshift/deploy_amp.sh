@@ -25,6 +25,6 @@ echo "User's OCP token => $OCP_TOKEN"
          -e filter_tags='create-build-config'\
          -e include_tags='create-build-config, deploy' \
          -e service='malware-data-service' \
-         -e apps_subdomain='ocp.nvsconsulting.io' \
+         -e apps_subdomain='apps.mng-staging.dso.ncps.us-cert.gov' \
          -e scm_url='https://github.dso.ncps.us-cert.gov/malware-nextgen-pam/DataService.git' \
          -e scm_ref='ocp'
