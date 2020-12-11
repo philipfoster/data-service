@@ -18,7 +18,7 @@ objects:
           targetPort: 9000
           name: datasvc-port
       selector:
-        name: ${SERVICE}
+        name: data-service
       sessionAffinity: None
       type: ClusterIP
 parameters:

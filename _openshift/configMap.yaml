@@ -23,7 +23,7 @@ objects:
         #########################################
         #Broker URL  UPDATE THIS FOR DEV/TEST   #
         #########################################
-        spring.activemq.broker-url=tcp://ec2-3-133-89-74.us-east-2.compute.amazonaws.com:61616
+        spring.activemq.broker-url=tcp://ec2-3-19-243-101.us-east-2.compute.amazonaws.com:61616
 
         ###############################
         #Spring Boot  DO NOT CHANGE   #
